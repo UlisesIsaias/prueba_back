@@ -1,5 +1,5 @@
 import { before } from 'node:test';
-import { WorldGenerator } from './city-generator';
+import { WorldGenerator } from './world-generator';
 import { World, Bounds } from './world';
 import { City } from './city';
 

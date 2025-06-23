@@ -109,6 +109,6 @@ export class WorldGenerator {
 
 class NumOfCitiesExceedWorldBoundsError extends Error {
     constructor(numOfCities: number) {
-        super(`World's bounds aren’t big enough to fit ${numOfCities} cities.`);
+        super(`Bounds aren’t big enough to fit ${numOfCities} cities.`);
     }
 }

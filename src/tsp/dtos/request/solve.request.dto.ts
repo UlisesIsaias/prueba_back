@@ -1,34 +1,20 @@
-import {
-    IsNotEmpty,
-    IsNumber,
-    IsString,
-    MinLength,
-    ValidateNested,
-} from 'class-validator';
+import { IsArray, ValidateNested, IsNumber } from 'class-validator';
+import { Type } from 'class-transformer';
 
-/**
- * Represents the distance between two cities in the TSP problem.
- */
-export class TspDistanceRequestDto {
-    @IsString()
-    @IsNotEmpty()
-    from: string;
+export class CityDto {
+  @IsNumber()
+  id: number;
 
-    @IsString()
-    @IsNotEmpty()
-    to: string;
+  @IsNumber()
+  x: number;
 
-    @IsNumber()
-    distance: number;
+  @IsNumber()
+  y: number;
 }
 
-/**
- * Defines the request structure for solving the TSP.
- */
-export class TspSolveRequestDto {
-    @MinLength(2, { each: true })
-    cities: string[];
-
-    @ValidateNested()
-    distances: TspDistanceRequestDto[];
+export class SolveRequestDto {
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => CityDto)
+  cities: CityDto[];
 }

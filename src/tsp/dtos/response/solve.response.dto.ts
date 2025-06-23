@@ -1,7 +1,10 @@
-/**
- * Defines the solved response returned when solving the TSP.
- */
-export interface TspSolveResponseDto {
-    route: string[];
+export class SolveResponseDto {
+    route: number[];
     totalDistance: number;
-}
+  
+    constructor(route: number[], totalDistance: number) {
+      this.route = route;
+      this.totalDistance = totalDistance;
+    }
+  }
+  

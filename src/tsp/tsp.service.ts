@@ -1,42 +1,26 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
-import { TspSolveResponseDto } from './dtos/response/solve.response.dto';
-import { TspSolveRequestDto } from './dtos/request/solve.request.dto';
-import { TspGenerateCitiesResponseDto } from './dtos/response/generate-cities.response.dto';
-import { WorldGenerator } from './domain/world-generator/world-generator';
-import { TspGenerateCitiesRequestDto } from './dtos/request/generate-cities.request.dto';
+import { Injectable } from '@nestjs/common';
+import { City } from './domain/tsp-solver/city';
+import { TSPSolver } from './domain/tsp-solver/tsp-solver';
+import { SolveResponseDto } from './dtos/response/solve.response.dto';
+import { GenerateCitiesResponseDto } from './dtos/response/generate-cities.response.dto';
 
-/**
- * The TspService class is a NestJS service responsible for implementing the
- * core logic of solving the Traveling Salesman Problem (TSP) and generating
- * random city coordinates.
- */
 @Injectable()
 export class TspService {
-    solve(payload: TspSolveRequestDto): TspSolveResponseDto {
-        void payload;
-        throw new NotImplementedException(
-            `${this.solve.name} method not implemented in ${TspService.name}`,
-        );
+  solveTsp(citiesInput: { id: number; x: number; y: number }[]): SolveResponseDto {
+    const cities = citiesInput.map(c => new City(c.id, c.x, c.y));
+    const solver = new TSPSolver();
+    const result = solver.solve(cities);
 
-        // To do
-        // - Implement TSP solver
-    }
+    return new SolveResponseDto(result.route, result.totalDistance);
+  }
 
-    generateCities(
-        payload: TspGenerateCitiesRequestDto,
-    ): TspGenerateCitiesResponseDto {
-        const worldGenerator = new WorldGenerator(payload.numOfCities, {
-            x: payload.worldBoundX,
-            y: payload.worldBoundY,
-        });
+  generateCities(count: number): GenerateCitiesResponseDto {
+    const cities = Array.from({ length: count }, (_, i) => ({
+      id: i,
+      x: Math.floor(Math.random() * 100),
+      y: Math.floor(Math.random() * 100),
+    }));
 
-        worldGenerator.generateCities();
-
-        // To do
-        // - Calculate distance between cities
-
-        throw new NotImplementedException(
-            `${this.generateCities.name} method not implemented in ${TspService.name}`,
-        );
-    }
+    return new GenerateCitiesResponseDto(cities);
+  }
 }
