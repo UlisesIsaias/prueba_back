@@ -1,100 +1,73 @@
-# Backend Developer Technical Test: Traveling Salesman Problem (TSP)
+tsp-backend-nestjs-ulises
+Este proyecto es un backend desarrollado con NestJS que implementa el algoritmo del Viajante de Comercio (TSP) utilizando el método del vecino más cercano para obtener una solución aproximada.
+Descripción
+El proyecto resuelve el problema del TSP generando ciudades con nombres únicos y coordenadas aleatorias dentro de límites definidos, asegurando que no se repitan ni estén fuera de rango. El algoritmo del vecino más cercano calcula una ruta aproximada que conecta todas las ciudades, comenzando y terminando en la misma ciudad. 
+El código está diseñado con un enfoque orientado a objetos, modularizado y cubierto por pruebas unitarias. Los endpoints de la API fueron probados manualmente con Insomnia para verificar la generación de ciudades y la resolución de rutas válidas.
+Tecnologías utilizadas
 
-## Overview
+Node.js  
+NestJS  
+TypeScript  
+Jest (para pruebas unitarias)  
+Insomnia (para pruebas manuales de la API)
 
-The purpose of this test is to assess your problem-solving skills,
-object-oriented programming (OOP) abilities, and approach to unfamiliar
-challenges. You will be required to implement a solution for the Traveling
-Salesman Problem (TSP) using TypeScript, focusing on clean code, efficiency,
-and maintainability.
-
-We are particularly interested in how you:
-
-- **Break down a complex problem** and structure your solution.
-- **Apply OOP principles** to create modular and reusable components.
-- **Optimize performance** and reason about time complexity.
-- **Explain your thought process** and decision-making.
-
-## Problem Statement
-
-The Traveling Salesman Problem (TSP) is defined as follows:
-
-    Given a set of N cities and the distances between each pair of cities, find
-    the shortest possible route that visits each city exactly once and returns
-    to the starting city.
-
-This problem is known to be NP-hard, meaning an exact solution may not be
-computationally feasible for large numbers of cities. Your goal is to implement
-an approximate or exact solution using OOP principles.
-
-## Test Format
-
-- **Duration:** 2 to 4 days for independent problem-solving.
-- **Deliverables:**
-    1. Fork this repository and implement a TSP solver following **OOP principles**.
-    2. A **RATIONALE.md** document explaining your approach, assumptions, and trade-offs.
-    3. A **live discussion session** where you explain your reasoning and answer
-       follow-up questions.
-
-## Requirements
-
-#### **Functional Requirements**
-
-1. TSP Solver Implementation
-    - Implement a method that solves the TSP given a set of cities and their
-      distances.
-    - The method should return the ordered list of cities in the computed
-      route, along with the total distance.
-    - Ensure your solution is efficient for at least N = 10 cities.
-2. City Distance Calculation
-    - Implement logic to calculate the distances between randomly generated
-      cities in a 2D plane.
-3. REST API Endpoints
-    - Implement the missing logic for the two API endpoints:
-        - POST /api/tsp/solve: Should compute the shortest route for a given set of
-          cities.
-        - POST /api/tsp/generate-cities: Should generate a set of random cities in a
-          bounded 2D space and calculate their distances.
-4. Performance Considerations
-    - Your solution does not need to be optimal, but it should demonstrate
-      reasoned trade-offs between efficiency and correctness.
-    - If implementing an approximate algorithm (e.g., Nearest Neighbor, Genetic
-      Algorithm), document your rationale and performance expectations.
-
-#### **Technical Constraints**
-
-- The solution must be written in TypeScript.
-- Follow object-oriented programming (OOP) principles.
-- Ensure the code is structured, modular, and maintainable.
-- Include unit tests to verify correctness.
-
-## Provided Boilerplate Code
-
-A NestJS-based service API has been provided to allow you to focus on
-implementing the TSP solution. The API exposes the endpoints:
-
-- POST /api/tsp/solve → Accepts a list of cities and their distances.
-- POST /api/tsp/generate-cities → Generates random cities on a 2D plane.
-
-You will primarily work in the `src/tsp/domain/tsp-solver/` directory, where most of
-the implementation of your solution should reside.
-
-## How to Run the Project
-
-**1. Install dependencies:**
-
-```shell
+Instalación
+Para instalar las dependencias del proyecto, ejecuta:
 npm install
-```
 
-**2. Start the server**
-
-```shell
+Cómo usar
+Para iniciar el servidor en modo local:
 npm run start
-```
 
-**3. Run tests**
+Esto levantará el backend en un puerto predeterminado (por ejemplo, http://localhost:3000), permitiendo consumir los endpoints con herramientas como Insomnia, Postman o cualquier cliente HTTP.
 
-```shell
+Pruebas
+Para ejecutar las pruebas unitarias y verificar el correcto funcionamiento del algoritmo y las validaciones:
 npm run test
-```
+
+Las pruebas cubren:
+
+Validaciones de los límites del mundo.
+Agregado correcto de ciudades.
+Generación de coordenadas aleatorias.
+Ejecución del algoritmo del vecino más cercano.
+
+Todas las pruebas deben pasar (✔️).
+Endpoints disponibles
+POST /api/tsp/generate-cities
+Genera un conjunto de ciudades aleatorias dentro de los límites especificados.
+Payload de ejemplo:
+{
+  "numOfCities": 5,
+  "bounds": { "x": 10, "y": 10 }
+}
+
+Respuesta esperada:Un conjunto de ciudades con nombres únicos y coordenadas válidas.
+POST /api/tsp/solve
+Calcula una ruta utilizando el algoritmo del vecino más cercano.
+Payload de ejemplo:
+{
+  "cities": [
+    { "name": "A", "coordinates": { "x": 1, "y": 1 } },
+    { "name": "B", "coordinates": { "x": 5, "y": 2 } },
+    { "name": "C", "coordinates": { "x": 2, "y": 7 } }
+  ]
+}
+
+Respuesta de ejemplo:
+{
+  "route": ["A", "B", "C", "A"],
+  "totalDistance": 17.24
+}
+
+Estructura del proyecto
+/src/tsp/domain/
+  └── Clases del modelo (World, City, WorldGenerator, TspSolver).
+/src/tsp/controllers/
+  └── Controladores que definen los endpoints de la API.
+/src/tsp/dtos/
+  └── Estructuras de datos para entrada y salida (DTOs).
+/src/tsp/service/
+  └── Lógica que conecta el dominio con los controladores.
+/test/
+  └── Pruebas unitarias con Jest para generación, validaciones y solución del TSP.
