@@ -162,4 +162,7 @@
   POST /api/tsp/generate-cities: Genera ciudades aleatorias en un espacio 2D acotado.
 
   ## Razonamiento y decisiones
-  La elección del algoritmo del vecino más cercano se basó en su simplicidad y buen desempeño para problemas pequeños (N ≤ 10). Aunque no garantiza una solución óptima, ofrece un balance razonable entre eficiencia y calidad de la solución. Para problemas más grandes, se podrían explorar algoritmos como algoritmos genéticos o branch and bound, pero no fueron necesarios para los requisitos actuales.
+  La elección del algoritmo del vecino más cercano se basó en su simplicidad y buen desempeño para problemas pequeños
+  (N ≤ 10). Aunque no garantiza una solución óptima, ofrece un balance razonable entre eficiencia y calidad de la solución.
+  Para problemas más grandes, se podrían explorar algoritmos como algoritmos genéticos o branch and bound, pero no fueron
+  necesarios para los requisitos actuales.
