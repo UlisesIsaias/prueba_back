@@ -129,9 +129,8 @@
 }
 ```
   ## Respuesta de esperada:
-  
 ''' json
-  {
+{
   "route": [
     0,
     8,
@@ -144,9 +143,9 @@
     5,
     0
   ],
-
   "totalDistance": 289.3577832270703
 }
+```
 ```
 
   Implementación del solver TSP:
