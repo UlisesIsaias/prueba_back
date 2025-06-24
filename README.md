@@ -77,13 +77,12 @@
   POST (http://localhost:3000/api/tsp/solve)
   Calcula una ruta utilizando el algoritmo del vecino más cercano.
 
-## Payload de ejemplo:
 ## Payload de ejemplo
 
-json
-{
-  "cities": [{
-
+json {
+  "cities": 
+  [
+  {  
       "id": 0,
       "x": 30,
       "y": 33
@@ -130,6 +129,8 @@ json
     }
   ]
 }
+
+
   ## Respuesta de esperada:
 
  ''' json{
