@@ -78,11 +78,12 @@
   Calcula una ruta utilizando el algoritmo del vecino más cercano.
 
 ## Payload de ejemplo:
+## Payload de ejemplo
 
-```json
+json
 {
-  "cities": [
-    {
+  "cities": [{
+
       "id": 0,
       "x": 30,
       "y": 33
@@ -126,11 +127,9 @@
       "id": 8,
       "x": 45,
       "y": 22
-      ...
     }
   ]
 }
-
   ## Respuesta de esperada:
 
  ''' json{
@@ -145,7 +144,7 @@
     2,
     5,
     0
-  ...
+    
   ],
   "totalDistance": 289.3577832270703
 }
