@@ -64,25 +64,23 @@
   Genera un conjunto de ciudades aleatorias dentro de los límites especificados.
 
   ## Payload de ejemplo:
-
-  json
+  ```json
   {
   "count": 9
   }
-
-  ## Respuesta esperada:
+  ```
 
   Un conjunto de ciudades con nombres únicos y coordenadas válidas dentro de los límites especificados.
 
   POST (http://localhost:3000/api/tsp/solve)
   Calcula una ruta utilizando el algoritmo del vecino más cercano.
 
-## Payload de ejemplo
+## Payload de ejemplo:
 
-json {
-  "cities": 
-  [
-  {  
+```json
+{
+  "cities": [
+    {
       "id": 0,
       "x": 30,
       "y": 33
@@ -129,11 +127,11 @@ json {
     }
   ]
 }
-
-
+```
   ## Respuesta de esperada:
-
- ''' json{
+  
+''' json
+  {
   "route": [
     0,
     8,
@@ -145,10 +143,11 @@ json {
     2,
     5,
     0
-    
   ],
+  ```
   "totalDistance": 289.3577832270703
 }
+```
 
   Implementación del solver TSP:
   Se implementó el algoritmo del vecino más cercano, que devuelve una ruta ordenada de ciudades y la distancia total.
