@@ -31,7 +31,6 @@ El proyecto genera ciudades con nombres únicos y coordenadas aleatorias dentro 
 
 Para instalar las dependencias del proyecto, ejecuta:
 
-bash
 npm install
 
 ## Cómo usar
